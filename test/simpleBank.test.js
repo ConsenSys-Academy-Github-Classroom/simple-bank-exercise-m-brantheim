@@ -14,7 +14,7 @@ contract("SimpleBank", function (accounts) {
     assert.equal(await web3.eth.getBalance(alice), eth100.toString());
   });
 
-  it.skip("is owned by owner", async () => {
+  it("is owned by owner", async () => {
     assert.equal(
       // Hint:
       //   the error `TypeError: Cannot read property 'call' of undefined`
