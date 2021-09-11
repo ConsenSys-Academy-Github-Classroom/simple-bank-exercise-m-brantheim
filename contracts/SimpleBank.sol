@@ -19,7 +19,7 @@ contract SimpleBank {
     // Fill in the visibility keyword
     // Hint: We want to create a getter function and allow contracts to be able
     //       to see if a user is enrolled.
-    mapping (address => bool) enrolled;
+    mapping (address => bool) public enrolled;
 
     // Let's make sure everyone knows who owns the bank, yes, fill in the
     // appropriate visilibility keyword
@@ -29,7 +29,7 @@ contract SimpleBank {
      */
     
     // Add an argument for this event, an accountAddress
-    event LogEnrolled();
+    event LogEnrolled(address account);
 
     // Add 2 arguments for this event, an accountAddress and an amount
     event LogDepositMade();
@@ -62,7 +62,9 @@ contract SimpleBank {
     /// @return The users enrolled status
     // Emit the appropriate event
     function enroll() public returns (bool){
-      // 1. enroll of the sender of this transaction
+      enrolled[msg.sender] = true;
+      emit LogEnrolled(msg.sender);
+      return true;
     }
 
     /// @notice Deposit ether into bank

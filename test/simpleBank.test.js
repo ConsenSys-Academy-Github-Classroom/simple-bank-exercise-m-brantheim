@@ -28,7 +28,7 @@ contract("SimpleBank", function (accounts) {
     );
   });
 
-  it.skip("should mark addresses as enrolled", async () => {
+  it("should mark addresses as enrolled", async () => {
     await instance.enroll({ from: alice });
 
     const aliceEnrolled = await instance.enrolled(alice, { from: alice });
