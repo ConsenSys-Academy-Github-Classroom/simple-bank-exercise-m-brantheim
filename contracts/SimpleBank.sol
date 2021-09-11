@@ -36,7 +36,7 @@ contract SimpleBank {
 
     // Create an event called LogWithdrawal
     // Hint: it should take 3 arguments: an accountAddress, withdrawAmount and a newBalance 
-    event LogWithdrawal();
+    event LogWithdrawal(address accountAddress, uint withdrawAmount, uint newBalance);
 
     /* Functions
      */
@@ -83,12 +83,10 @@ contract SimpleBank {
       // Subtract the amount from the sender's balance, and try to send that amount of ether
       // to the user attempting to withdraw. 
       // return the user's balance.
-
-      // 1. Use a require expression to guard/ensure sender has enough funds
-
-      // 2. Transfer Eth to the sender and decrement the withdrawal amount from
-      //    sender's balance
-
-      // 3. Emit the appropriate event for this message
+      address payable accountAddress = msg.sender;
+      require(balances[accountAddress] >= withdrawAmount, "Must have sufficient funds to withdraw.");
+      accountAddress.send(withdrawAmount);
+      balances[accountAddress] -= withdrawAmount;
+      emit LogWithdrawal(accountAddress, withdrawAmount, balances[accountAddress]);
     }
 }

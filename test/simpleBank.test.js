@@ -82,7 +82,7 @@ contract("SimpleBank", function (accounts) {
     );
   });
 
-  it.skip("should withdraw correct amount", async () => {
+  it("should withdraw correct amount", async () => {
     const initialAmount = 0;
     await instance.enroll({ from: alice });
     await instance.deposit({ from: alice, value: deposit });
