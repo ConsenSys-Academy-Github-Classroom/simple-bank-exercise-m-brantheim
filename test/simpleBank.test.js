@@ -39,7 +39,7 @@ contract("SimpleBank", function (accounts) {
     );
   });
 
-  it.skip("should not mark unenrolled users as enrolled", async () => {
+  it("should not mark unenrolled users as enrolled", async () => {
     const ownerEnrolled = await instance.enrolled(contractOwner, { from: contractOwner });
     assert.equal(
       ownerEnrolled,
@@ -48,7 +48,7 @@ contract("SimpleBank", function (accounts) {
     );
   });
 
-  it.skip("should deposit correct amount", async () => {
+  it("should deposit correct amount", async () => {
     await instance.enroll({ from: alice });
     await instance.deposit({ from: alice, value: deposit });
     const balance = await instance.getBalance.call({ from: alice });
