@@ -60,7 +60,7 @@ contract("SimpleBank", function (accounts) {
     );
   });
 
-  it.skip("should log a deposit event when a deposit is made", async () => {
+  it("should log a deposit event when a deposit is made", async () => {
     await instance.enroll({ from: alice });
     const result = await instance.deposit({ from: alice, value: deposit });
 
